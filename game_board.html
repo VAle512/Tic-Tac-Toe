@@ -1,0 +1,53 @@
+<html>
+	<head>
+	
+		<link rel="stylesheet" type="text/css" href="main_style.css">
+		
+	</head>
+
+	<body>
+		<table style="width:35%">
+			<tr>
+				<th>Firstname</th>
+				<th>Lastname</th> 
+				<th>Age</th>
+			</tr>
+			<tr>
+				<td  class="board_cell" >Jill</td>
+				<td>Smith</td> 
+				<td>50</td>
+			</tr>
+			<tr>
+				<td>Eve</td>
+				<td>Jackson</td> 
+				<td>94</td>
+			</tr>
+		</table>
+	
+		<div class="board_row" >
+			<div class="board_cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div class="board_cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div class="board_cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+		</div>
+		<div class="board_row">
+			<div class="board_cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div class="board_cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div class="board_cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+		</div>
+		<div class="board_row">
+			<div class="board_cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div class="board_cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div class="board_cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+		</div>
+		<div id="game_elements_outer_container">
+			<div id="game_elements_inner_container">
+				<img id="x_img" src="images/X.png" draggable="true" ondragstart="drag(event)" class="game_elements">
+				<img id="o_img" src="images/O.png" draggable="true" ondragstart="drag(event)" class="game_elements">
+			</div>
+		</div>
+		
+		
+	</body>
+	
+	<script src="game_logic.js"></script>
+</html>
