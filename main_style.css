@@ -16,7 +16,7 @@
 #game_elements_inner_container{
 	margin-top: 35px;
     margin-left: 87px;
-    display: inline;
+    display: inline-flex;
 }
 
 
