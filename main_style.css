@@ -1,16 +1,8 @@
 
 .board_cell{
 	border-style:solid;
-	border-width:2px;
-	border-radius:3px;
-	padding:50px;
-	margin:5px;
-    width:10px;
 }
 
-.board_row{
-	display:inline-grid;
-}
 
 .game_elements{
 	width:100px;
@@ -22,8 +14,41 @@
 }
 
 #game_elements_inner_container{
-	margin-left: 35px;
-	display: inline-grid;
+	margin-top: 35px;
+    margin-left: 87px;
+    display: inline;
 }
+
+
+table.fixed {
+	table-layout:fixed; 
+	width:40%;
+}
+
+.element{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 40px;
+}
+
+.o_element{
+	color:red;
+}
+
+.x_element{
+	color:black;
+}
+
+.fill_element{
+	visibility: hidden;
+}
+
+#reset_game_board{
+	margin-left: 15px;
+	margin-bottom: 20px;
+}
+
+
+
 
 
