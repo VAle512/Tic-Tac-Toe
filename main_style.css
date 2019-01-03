@@ -22,12 +22,11 @@
 
 table.fixed {
 	table-layout:fixed; 
-	width:40%;
+	width:400px;
+	height:400px;
 }
 
 .element{
-	padding-top: 10px;
-	padding-bottom: 10px;
 	font-size: 40px;
 }
 
