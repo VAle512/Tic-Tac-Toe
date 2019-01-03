@@ -3,14 +3,12 @@ var x_turn = true;
 var victoryPositions = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 
 
-//I fill all of the td to make them look right
 resetGameBoard();
 
 
 document.getElementById('reset_game_board').addEventListener("click", function(){
 	resetGameBoard();
 });
-
 
 
 //********* DRAG AND DROP FUNCTIONS ***********///
@@ -25,15 +23,20 @@ function drag(ev) {
 	ev.dataTransfer.setData("text", ev.target.id);
 }
 
-function sumPoints(currEl){
+
+function manageScore(currEl){
 	switch(currEl){
 		case "x":
 			var x_points = parseInt(document.getElementById("x_points").innerHTML);
-			document.getElementById("x_points").innerHTML = x_points + 1;L
+			document.getElementById("x_points").innerHTML = x_points + 1;
 		break;
 		case "o":
 			var o_points = parseInt(document.getElementById("o_points").innerHTML);
 			document.getElementById("o_points").innerHTML = o_points + 1;
+		break;
+		case "reset":
+			document.getElementById("o_points").innerHTML = "0";
+			document.getElementById("x_points").innerHTML = "0";
 		break;
 		default:
 			console.log("Nessuno prende punti");
@@ -42,7 +45,7 @@ function sumPoints(currEl){
 	}
 }
 
-
+//Function that occurs when i drop the elements
 function drop(ev) {
 	ev.preventDefault();
 	var element_id = ev.dataTransfer.getData("text");
@@ -77,7 +80,10 @@ function drop(ev) {
 	
 }
 
+//********* END: DRAG AND DROP FUNCTIONS ***********///
 
+
+//Reset the game. Empty cells and zero points
 function resetGameBoard(){
 	var tds = document.getElementsByClassName('board_cell');
 	x_turn = true;
@@ -85,14 +91,18 @@ function resetGameBoard(){
 	for(var i=0; i<tds.length; i++){
 		tds[i].innerHTML = "<center><p class='element fill_element'>X</p></center>";
 	}
+	
+	manageScore("reset");
 }
 
 
+//Check if there's a winner.
 function checkForVictory(){
 	var table_elements = document.getElementsByClassName('element');
 	var current_board_elements = [];
 	var current_winner = "";
-
+	
+	//A loop that fills the current board status array.
 	for(var i=0; i<table_elements.length; i++){
 		
 		if(table_elements[i].classList.contains("x_element")){
@@ -106,25 +116,24 @@ function checkForVictory(){
 
 	
 	for(var i=0; i<table_elements.length; i++){
-		var current_victory = victoryPositions[i];
+		var victoryPosition = victoryPositions[i];
 
-		if(current_board_elements[current_victory[0]] == current_board_elements[current_victory[1]] &&
-			current_board_elements[current_victory[0]] == current_board_elements[current_victory[2]]){
+		if(current_board_elements[victoryPosition[0]] == current_board_elements[victoryPosition[1]] &&
+			current_board_elements[victoryPosition[0]] == current_board_elements[victoryPosition[2]]){
 			
-			current_winner = current_board_elements[current_victory[0]];
+			current_winner = current_board_elements[victoryPosition[0]];
 			
-			//Controllo quale è il vincitore
 			if(current_winner != "*"){
+				
 				setTimeout(function(){ 
-					alert("Ha vinto " + current_winner); 
+					alert("Ha vinto " + current_winner.toUpperCase()); 
 					resetGameBoard();
-					sumPoints(current_winner);
+					manageScore(current_winner);
 				}, 300);
 
 				break;
 			}
 		}
-		
 	}
 }
 
