@@ -2,10 +2,14 @@
 //Proprieta
 var x_turn = true;
 var victoryPositions = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
+var is_single_player = true;
+var current_board_elements;
 
+
+//Setting the single player mode as the default onerror
+document.getElementById("ia_off").checked = true;
 
 resetGameBoard();
-
 
 document.getElementById('reset_game_board').addEventListener("click", function(){
 	resetGameBoard();
@@ -46,6 +50,7 @@ function manageScore(currEl){
 	}
 }
 
+
 //Function that occurs when i drop the elements
 function drop(ev) {
 	ev.preventDefault();
@@ -75,13 +80,24 @@ function drop(ev) {
 			
 		}
 	}catch(err){
-		console.log("piazzato");
+		console.log(err);
 	}
-	
-	
 }
-
 //********* END: DRAG AND DROP FUNCTIONS ***********///
+
+
+
+//It Keeps track of the single or multiplayer mode through a boolean variable in the code
+document.getElementById('ia_off').addEventListener("click", function(){
+	is_single_player = true;
+	console.log(is_single_player);
+});
+
+document.getElementById('ia_on').addEventListener("click", function(){
+	is_single_player = false;
+	console.log(is_single_player);
+});
+
 
 
 //Reset the game. Empty cells and zero points
@@ -100,7 +116,7 @@ function resetGameBoard(){
 //Check if there's a winner.
 function checkForVictory(){
 	var table_elements = document.getElementsByClassName('element');
-	var current_board_elements = [];
+	current_board_elements = [];
 	var current_winner = "";
 	
 	//A loop that fills the current board status array.
@@ -116,13 +132,12 @@ function checkForVictory(){
 	}
 
 	
-	for(var i=0; i<table_elements.length; i++){
-		var victoryPosition = victoryPositions[i];
-
-		if(current_board_elements[victoryPosition[0]] == current_board_elements[victoryPosition[1]] &&
-			current_board_elements[victoryPosition[0]] == current_board_elements[victoryPosition[2]]){
+	for(var i=0; i<victoryPositions.length; i++){
+		
+		if(current_board_elements[victoryPositions[i][0]] == current_board_elements[victoryPositions[i][1]] &&
+			current_board_elements[victoryPositions[i][0]] == current_board_elements[victoryPositions[i][2]]){
 			
-			current_winner = current_board_elements[victoryPosition[0]];
+			current_winner = current_board_elements[victoryPositions[i][0]];
 			
 			if(current_winner != "*"){
 				
@@ -137,6 +152,14 @@ function checkForVictory(){
 		}
 	}
 }
+
+
+function IA(){
+	
+}
+
+
+
 
 
 
