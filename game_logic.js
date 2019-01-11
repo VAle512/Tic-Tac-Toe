@@ -125,10 +125,24 @@ function checkForVictory(){
 					manageScore(current_winner);
 				}, 100);
 
-				break;
+				return;
 			}
 		}
 	}
+	
+	/*This check for ties once the board is full*/
+	var notEmptyCounter = 0;
+	for (var j = 0; j<current_board_state.length; j++) {
+		if(current_board_state[j] != "*")
+			notEmptyCounter++;
+	}
+	if (notEmptyCounter == 9) {
+		setTimeout(function(){ 
+					alert("Pareggio!"); 
+					resetGameBoard(false);
+				}, 100);
+	}
+
 }
 
 
@@ -254,8 +268,3 @@ function checkForEmptyVictoryPositions(victoryPos){
 	
 	return -1; //There are no empty positions
 }
-
-
-
-
-
