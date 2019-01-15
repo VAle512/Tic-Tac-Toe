@@ -2,13 +2,13 @@
 //Proprieta
 var x_turn = true;
 var victoryPositions = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
-var is_single_player = false;
+var is_single_player = true;
 var current_board_state = ['*','*','*','*','*','*','*','*','*'];
 var first_multi_move = true;
 
 
 //Setting the single player mode as the default onerror
-document.getElementById("ia_off").checked = true;
+document.getElementById("ia_off").checked = false;
 document.getElementById("ia_on").checked = true;
 
 resetGameBoard(true);
@@ -81,12 +81,13 @@ function drop(ev) {
 
 //It Keeps track of the single or multiplayer mode through a boolean variable in the code
 document.getElementById('ia_off').addEventListener("click", function(){
-	is_single_player = true;
+	is_single_player = false;
 	resetGameBoard(true);
 });
 
 document.getElementById('ia_on').addEventListener("click", function(){
-	is_single_player = false;
+	first_multi_move = true;
+	is_single_player = true;
 	resetGameBoard(true);
 });
 
@@ -165,7 +166,7 @@ function updateCurrentBoardState(){
 
 
 //Single player Rules
-function singlePlayerMode(element_id,ev){
+function multiPlayerMode(element_id,ev){
 	switch(element_id){
 		case "x_img":
 			
@@ -187,7 +188,7 @@ function singlePlayerMode(element_id,ev){
 
 
 //Multi player Rules
-function multiPlayerMode(element_id,ev){
+function singlePlayerMode(element_id,ev){
 	
 	if(element_id == "x_img"){
 		ev.target.parentElement.innerHTML = "<center><p class='element x_element'><b>X</b></p></center>";
