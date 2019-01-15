@@ -7,7 +7,7 @@ var current_board_state = ['*','*','*','*','*','*','*','*','*'];
 var first_multi_move = true;
 
 
-//Setting the single player mode as the default onerror
+//Setting the single player mode as the default onload
 document.getElementById("ia_off").checked = false;
 document.getElementById("ia_on").checked = true;
 
